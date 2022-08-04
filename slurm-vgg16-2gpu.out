@@ -1,0 +1,761 @@
+
+Lmod is automatically replacing "intel/19.0.4" with "gcc/7.4.0".
+
+NOTE: This module uses Singularity. Some commands execute inside the container
+(e.g. python3, pip3).
+
+
+Inactive Modules:
+  1) intel-mkl/2019.0.4
+
+
+Currently Loaded Modules:
+  1) StdEnv   2) gcc/7.4.0   3) tensorflow/2.8
+
+Inactive Modules:
+  1) intel-mkl/2019.0.4
+
+ 
+
+srun python3 $*
++ srun python3 vgg16-hvd.py
+2022-08-04 11:20:41.203558: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-08-04 11:20:41.209192: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2022-08-04 11:20:43.152346: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 30962 MB memory:  -> device: 1, name: Tesla V100-SXM2-32GB, pci bus id: 0000:8a:00.0, compute capability: 7.0
+2022-08-04 11:20:43.176073: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 30962 MB memory:  -> device: 0, name: Tesla V100-SXM2-32GB, pci bus id: 0000:89:00.0, compute capability: 7.0
+Using Tensorflow version: 2.8.0 Keras version: 2.8.0 backend: tensorflow
+Using Horovod with 2 workers
+Found 25000 images.
+Tensor("args_0:0", shape=(), dtype=string)
+Tensor("args_0:0", shape=(), dtype=string)
+Using "VGG11_model" pre-trained model with 23 layers
+Model: "VGG16_model_hvd"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_1 (InputLayer)        [(None, 224, 224, 3)]     0         
+                                                                 
+ rescaling (Rescaling)       (None, 224, 224, 3)       0         
+                                                                 
+ random_crop (RandomCrop)    (None, 224, 224, 3)       0         
+                                                                 
+ random_flip (RandomFlip)    (None, 224, 224, 3)       0         
+                                                                 
+ conv2d (Conv2D)             (None, 222, 222, 64)      1792      
+                                                                 
+ conv2d_1 (Conv2D)           (None, 220, 220, 64)      36928     
+                                                                 
+ max_pooling2d (MaxPooling2D  (None, 110, 110, 64)     0         
+ )                                                               
+                                                                 
+ conv2d_2 (Conv2D)           (None, 108, 108, 128)     73856     
+                                                                 
+ conv2d_3 (Conv2D)           (None, 106, 106, 128)     147584    
+                                                                 
+ max_pooling2d_1 (MaxPooling  (None, 53, 53, 128)      0         
+ 2D)                                                             
+                                                                 
+ conv2d_4 (Conv2D)           (None, 51, 51, 256)       295168    
+                                                                 
+ conv2d_5 (Conv2D)           (None, 49, 49, 256)       590080    
+                                                                 
+ conv2d_6 (Conv2D)           (None, 49, 49, 256)       65792     
+                                                                 
+ max_pooling2d_2 (MaxPooling  (None, 24, 24, 256)      0         
+ 2D)                                                             
+                                                                 
+ conv2d_7 (Conv2D)           (None, 22, 22, 512)       1180160   
+                                                                 
+ conv2d_8 (Conv2D)           (None, 20, 20, 512)       2359808   
+                                                                 
+ conv2d_9 (Conv2D)           (None, 20, 20, 512)       262656    
+                                                                 
+ max_pooling2d_3 (MaxPooling  (None, 10, 10, 512)      0         
+ 2D)                                                             
+                                                                 
+ conv2d_10 (Conv2D)          (None, 8, 8, 512)         2359808   
+                                                                 
+ conv2d_11 (Conv2D)          (None, 6, 6, 512)         2359808   
+                                                                 
+ conv2d_12 (Conv2D)          (None, 6, 6, 512)         262656    
+                                                                 
+ max_pooling2d_4 (MaxPooling  (None, 3, 3, 512)        0         
+ 2D)                                                             
+                                                                 
+ flatten (Flatten)           (None, 4608)              0         
+                                                                 
+ dense (Dense)               (None, 4096)              18878464  
+                                                                 
+ dropout (Dropout)           (None, 4096)              0         
+                                                                 
+ dense_1 (Dense)             (None, 4096)              16781312  
+                                                                 
+ dropout_1 (Dropout)         (None, 4096)              0         
+                                                                 
+ dense_2 (Dense)             (None, 1)                 4097      
+                                                                 
+=================================================================
+Total params: 45,659,969
+Trainable params: 45,659,969
+Non-trainable params: 0
+_________________________________________________________________
+None
+TensorBoard log directory:  /scratch/project_2006142/logs/cats-or-dogsVGG16_model_hvd-reuse-2022-08-04_11-20-44
+Epoch 1/100
+2022-08-04 11:20:47.174637: W tensorflow/core/grappler/optimizers/loop_optimizer.cc:907] Skipping loop optimization for Merge node with control input: VGG16_model_hvd/random_crop/cond/branch_executed/_10
+2022-08-04 11:20:47.175760: W tensorflow/core/grappler/optimizers/loop_optimizer.cc:907] Skipping loop optimization for Merge node with control input: VGG16_model_hvd/random_crop/cond/branch_executed/_10
+2022-08-04 11:20:57.327844: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3003 of 25000
+2022-08-04 11:20:57.600850: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 2890 of 25000
+2022-08-04 11:21:07.318139: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6248 of 25000
+2022-08-04 11:21:07.319591: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6751 of 25000
+2022-08-04 11:21:17.324663: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11049 of 25000
+2022-08-04 11:21:17.326596: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10891 of 25000
+2022-08-04 11:21:27.319989: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16026 of 25000
+2022-08-04 11:21:27.320664: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16260 of 25000
+2022-08-04 11:21:34.294432: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:21:35.169765: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:21:36.899413: I tensorflow/stream_executor/cuda/cuda_dnn.cc:368] Loaded cuDNN version 8201
+2022-08-04 11:21:36.965711: I tensorflow/stream_executor/cuda/cuda_dnn.cc:368] Loaded cuDNN version 8201
+2022-08-04 11:23:05.610237: W tensorflow/core/grappler/optimizers/loop_optimizer.cc:907] Skipping loop optimization for Merge node with control input: VGG16_model_hvd/random_crop/cond/branch_executed/_10
+2022-08-04 11:23:05.637118: W tensorflow/core/grappler/optimizers/loop_optimizer.cc:907] Skipping loop optimization for Merge node with control input: VGG16_model_hvd/random_crop/cond/branch_executed/_10
+78/78 - 155s - loss: 0.7162 - accuracy: 0.5220 - val_loss: 0.6978 - val_accuracy: 0.6339 - lr: 0.0067 - 155s/epoch - 2s/step
+Epoch 2/100
+2022-08-04 11:23:30.212225: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 2450 of 25000
+2022-08-04 11:23:30.213185: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 2574 of 25000
+2022-08-04 11:23:40.204488: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6790 of 25000
+2022-08-04 11:23:40.207032: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6697 of 25000
+2022-08-04 11:23:50.205767: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14042 of 25000
+2022-08-04 11:23:50.215404: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14082 of 25000
+2022-08-04 11:24:00.212224: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17726 of 25000
+2022-08-04 11:24:00.220587: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16948 of 25000
+2022-08-04 11:24:04.827745: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:24:06.200581: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 131s - loss: 0.6596 - accuracy: 0.6270 - val_loss: 0.6069 - val_accuracy: 0.6956 - lr: 0.0083 - 131s/epoch - 2s/step
+Epoch 3/100
+2022-08-04 11:25:40.968286: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4029 of 25000
+2022-08-04 11:25:41.131717: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4006 of 25000
+2022-08-04 11:25:50.966850: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7896 of 25000
+2022-08-04 11:25:50.985751: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8034 of 25000
+2022-08-04 11:26:00.964115: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17342 of 25000
+2022-08-04 11:26:00.981825: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17213 of 25000
+2022-08-04 11:26:05.044809: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:26:06.184592: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:27:26.933969: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4883 of 25000
+2022-08-04 11:27:27.128326: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+
+Epoch 3: finished gradual learning rate warmup to 0.01.
+78/78 - 122s - loss: 0.5855 - accuracy: 0.7055 - val_loss: 0.5400 - val_accuracy: 0.7490 - lr: 0.0100 - 122s/epoch - 2s/step
+Epoch 4/100
+2022-08-04 11:27:43.118538: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8014 of 25000
+2022-08-04 11:27:43.130415: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8312 of 25000
+2022-08-04 11:27:53.118758: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13241 of 25000
+2022-08-04 11:27:53.122303: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13555 of 25000
+2022-08-04 11:28:03.129705: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18813 of 25000
+2022-08-04 11:28:03.153007: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19105 of 25000
+2022-08-04 11:28:04.547255: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:28:04.795174: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 115s - loss: 0.5476 - accuracy: 0.7341 - val_loss: 0.5330 - val_accuracy: 0.7363 - lr: 0.0100 - 115s/epoch - 1s/step
+Epoch 5/100
+2022-08-04 11:29:37.653549: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4907 of 25000
+2022-08-04 11:29:37.873316: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4575 of 25000
+2022-08-04 11:29:47.648771: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10609 of 25000
+2022-08-04 11:29:47.732774: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10260 of 25000
+2022-08-04 11:29:57.631002: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18901 of 25000
+2022-08-04 11:29:57.633782: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18971 of 25000
+2022-08-04 11:29:58.917213: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:29:58.984055: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 117s - loss: 0.5185 - accuracy: 0.7519 - val_loss: 0.4931 - val_accuracy: 0.7729 - lr: 0.0100 - 117s/epoch - 1s/step
+Epoch 6/100
+2022-08-04 11:31:34.173703: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5455 of 25000
+2022-08-04 11:31:34.178242: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5485 of 25000
+2022-08-04 11:31:44.179908: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10069 of 25000
+2022-08-04 11:31:44.247229: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10162 of 25000
+2022-08-04 11:31:54.191556: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13938 of 25000
+2022-08-04 11:31:54.252625: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15049 of 25000
+2022-08-04 11:32:04.172564: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19170 of 25000
+2022-08-04 11:32:04.175503: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19691 of 25000
+2022-08-04 11:32:04.541615: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:32:05.761437: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 126s - loss: 0.4948 - accuracy: 0.7651 - val_loss: 0.4616 - val_accuracy: 0.7871 - lr: 0.0100 - 126s/epoch - 2s/step
+Epoch 7/100
+2022-08-04 11:33:40.324592: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6067 of 25000
+2022-08-04 11:33:40.331068: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5377 of 25000
+2022-08-04 11:33:50.333503: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9298 of 25000
+2022-08-04 11:33:50.333610: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9775 of 25000
+2022-08-04 11:34:00.325168: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14707 of 25000
+2022-08-04 11:34:00.401008: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13927 of 25000
+2022-08-04 11:34:08.466477: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:34:09.042878: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 125s - loss: 0.4884 - accuracy: 0.7707 - val_loss: 0.4508 - val_accuracy: 0.7990 - lr: 0.0100 - 125s/epoch - 2s/step
+Epoch 8/100
+2022-08-04 11:35:44.975376: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5215 of 25000
+2022-08-04 11:35:45.011149: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5072 of 25000
+2022-08-04 11:35:54.985473: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13753 of 25000
+2022-08-04 11:35:55.009469: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14410 of 25000
+2022-08-04 11:36:04.460617: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:36:04.866686: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 115s - loss: 0.4572 - accuracy: 0.7930 - val_loss: 0.4402 - val_accuracy: 0.8045 - lr: 0.0100 - 115s/epoch - 1s/step
+Epoch 9/100
+2022-08-04 11:37:39.696130: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8643 of 25000
+2022-08-04 11:37:39.702947: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8066 of 25000
+2022-08-04 11:37:49.690899: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15500 of 25000
+2022-08-04 11:37:49.700408: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16257 of 25000
+2022-08-04 11:37:52.383918: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:37:53.435258: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 107s - loss: 0.4476 - accuracy: 0.7966 - val_loss: 0.4034 - val_accuracy: 0.8265 - lr: 0.0100 - 107s/epoch - 1s/step
+Epoch 10/100
+2022-08-04 11:39:26.748599: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4388 of 25000
+2022-08-04 11:39:26.781800: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4505 of 25000
+2022-08-04 11:39:36.644214: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12694 of 25000
+2022-08-04 11:39:36.647657: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13512 of 25000
+2022-08-04 11:39:46.643019: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19212 of 25000
+2022-08-04 11:39:46.659151: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18998 of 25000
+2022-08-04 11:39:48.061792: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:39:48.436614: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:41:09.110073: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4957 of 25000
+2022-08-04 11:41:09.115286: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4921 of 25000
+2022-08-04 11:41:09.132865: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:41:09.198929: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 119s - loss: 0.3983 - accuracy: 0.8270 - val_loss: 0.3624 - val_accuracy: 0.8497 - lr: 0.0100 - 119s/epoch - 2s/step
+Epoch 11/100
+2022-08-04 11:41:25.205916: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6115 of 25000
+2022-08-04 11:41:25.285121: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6217 of 25000
+2022-08-04 11:41:35.221364: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11426 of 25000
+2022-08-04 11:41:35.259522: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11179 of 25000
+2022-08-04 11:41:45.214814: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15375 of 25000
+2022-08-04 11:41:45.238180: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15227 of 25000
+2022-08-04 11:41:51.892766: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:41:53.178572: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 122s - loss: 0.3691 - accuracy: 0.8418 - val_loss: 0.3378 - val_accuracy: 0.8607 - lr: 0.0100 - 122s/epoch - 2s/step
+Epoch 12/100
+2022-08-04 11:43:27.338610: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4532 of 25000
+2022-08-04 11:43:27.381929: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3684 of 25000
+2022-08-04 11:43:37.297369: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9005 of 25000
+2022-08-04 11:43:37.326358: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10055 of 25000
+2022-08-04 11:43:47.407774: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16756 of 25000
+2022-08-04 11:43:47.408214: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17194 of 25000
+2022-08-04 11:43:53.116325: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:43:53.489551: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 122s - loss: 0.3550 - accuracy: 0.8514 - val_loss: 0.3053 - val_accuracy: 0.8785 - lr: 0.0100 - 122s/epoch - 2s/step
+Epoch 13/100
+2022-08-04 11:45:29.081169: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7058 of 25000
+2022-08-04 11:45:29.085513: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7930 of 25000
+2022-08-04 11:45:39.056731: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13008 of 25000
+2022-08-04 11:45:39.081950: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11573 of 25000
+2022-08-04 11:45:47.754434: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:45:49.094163: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19098 of 25000
+2022-08-04 11:45:49.918063: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 116s - loss: 0.3006 - accuracy: 0.8780 - val_loss: 0.2822 - val_accuracy: 0.8896 - lr: 0.0100 - 116s/epoch - 1s/step
+Epoch 14/100
+2022-08-04 11:47:24.796578: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3668 of 25000
+2022-08-04 11:47:24.886848: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4431 of 25000
+2022-08-04 11:47:34.794170: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9433 of 25000
+2022-08-04 11:47:34.797862: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9986 of 25000
+2022-08-04 11:47:44.789994: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13769 of 25000
+2022-08-04 11:47:44.816466: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13871 of 25000
+2022-08-04 11:47:52.365448: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:47:54.297491: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 122s - loss: 0.2829 - accuracy: 0.8870 - val_loss: 0.3080 - val_accuracy: 0.8743 - lr: 0.0100 - 122s/epoch - 2s/step
+Epoch 15/100
+2022-08-04 11:49:26.432330: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6937 of 25000
+2022-08-04 11:49:26.464408: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7359 of 25000
+2022-08-04 11:49:36.366939: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12428 of 25000
+2022-08-04 11:49:36.425346: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11426 of 25000
+2022-08-04 11:49:45.845957: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:49:46.399358: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18370 of 25000
+2022-08-04 11:49:50.195997: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:51:11.151631: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3788 of 25000
+2022-08-04 11:51:11.153156: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4560 of 25000
+2022-08-04 11:51:12.094014: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:51:13.981981: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 124s - loss: 0.2694 - accuracy: 0.8927 - val_loss: 0.2363 - val_accuracy: 0.9094 - lr: 0.0100 - 124s/epoch - 2s/step
+Epoch 16/100
+2022-08-04 11:51:30.070436: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5662 of 25000
+2022-08-04 11:51:30.080628: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6151 of 25000
+2022-08-04 11:51:40.069525: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12910 of 25000
+2022-08-04 11:51:40.087817: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12930 of 25000
+2022-08-04 11:51:50.058782: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18085 of 25000
+2022-08-04 11:51:50.069627: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18032 of 25000
+2022-08-04 11:51:52.411267: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:51:52.525035: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 115s - loss: 0.2455 - accuracy: 0.9048 - val_loss: 0.2583 - val_accuracy: 0.8995 - lr: 0.0100 - 115s/epoch - 1s/step
+Epoch 17/100
+2022-08-04 11:53:25.390667: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8294 of 25000
+2022-08-04 11:53:25.418194: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8028 of 25000
+2022-08-04 11:53:35.387622: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19023 of 25000
+2022-08-04 11:53:35.406612: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18562 of 25000
+2022-08-04 11:53:36.855499: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:53:37.731123: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 106s - loss: 0.2202 - accuracy: 0.9165 - val_loss: 0.2145 - val_accuracy: 0.9193 - lr: 0.0100 - 106s/epoch - 1s/step
+Epoch 18/100
+2022-08-04 11:55:11.330219: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8200 of 25000
+2022-08-04 11:55:11.390972: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7751 of 25000
+2022-08-04 11:55:21.355062: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14446 of 25000
+2022-08-04 11:55:21.443849: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14087 of 25000
+2022-08-04 11:55:29.119427: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:55:30.567061: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:56:51.443238: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3995 of 25000
+2022-08-04 11:56:51.604394: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3434 of 25000
+2022-08-04 11:56:53.528405: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:56:54.524868: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 119s - loss: 0.2043 - accuracy: 0.9221 - val_loss: 0.1828 - val_accuracy: 0.9334 - lr: 0.0100 - 119s/epoch - 2s/step
+Epoch 19/100
+2022-08-04 11:57:10.570621: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5651 of 25000
+2022-08-04 11:57:10.575567: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5245 of 25000
+2022-08-04 11:57:20.566977: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12170 of 25000
+2022-08-04 11:57:20.587484: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11751 of 25000
+2022-08-04 11:57:30.572487: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17735 of 25000
+2022-08-04 11:57:30.600305: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16730 of 25000
+2022-08-04 11:57:34.034656: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:57:34.578011: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 120s - loss: 0.1796 - accuracy: 0.9332 - val_loss: 0.2128 - val_accuracy: 0.9193 - lr: 0.0100 - 120s/epoch - 2s/step
+Epoch 20/100
+2022-08-04 11:59:10.863986: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4469 of 25000
+2022-08-04 11:59:10.891711: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5352 of 25000
+2022-08-04 11:59:20.848515: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11550 of 25000
+2022-08-04 11:59:20.880982: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10961 of 25000
+2022-08-04 11:59:30.861765: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18442 of 25000
+2022-08-04 11:59:30.865607: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18478 of 25000
+2022-08-04 11:59:34.322074: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 11:59:34.744370: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:00:55.570894: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4897 of 25000
+2022-08-04 12:00:55.602215: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4777 of 25000
+2022-08-04 12:00:55.723712: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:00:55.802417: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 121s - loss: 0.1666 - accuracy: 0.9386 - val_loss: 0.2091 - val_accuracy: 0.9196 - lr: 0.0100 - 121s/epoch - 2s/step
+Epoch 21/100
+2022-08-04 12:01:11.843754: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4786 of 25000
+2022-08-04 12:01:11.894629: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4386 of 25000
+2022-08-04 12:01:21.814586: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10218 of 25000
+2022-08-04 12:01:21.839384: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9713 of 25000
+2022-08-04 12:01:31.828032: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14691 of 25000
+2022-08-04 12:01:32.035599: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13927 of 25000
+2022-08-04 12:01:40.908296: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:01:42.296477: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19524 of 25000
+2022-08-04 12:01:43.160388: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:03:03.935276: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4949 of 25000
+2022-08-04 12:03:04.534477: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 129s - loss: 0.1541 - accuracy: 0.9443 - val_loss: 0.1809 - val_accuracy: 0.9321 - lr: 0.0100 - 129s/epoch - 2s/step
+Epoch 22/100
+2022-08-04 12:03:20.568322: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5604 of 25000
+2022-08-04 12:03:20.595934: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5189 of 25000
+2022-08-04 12:03:30.551533: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9917 of 25000
+2022-08-04 12:03:30.568978: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10833 of 25000
+2022-08-04 12:03:40.594066: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18345 of 25000
+2022-08-04 12:03:40.606584: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19444 of 25000
+2022-08-04 12:03:41.819376: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:03:44.917414: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:05:05.763157: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4970 of 25000
+2022-08-04 12:05:05.789667: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4628 of 25000
+2022-08-04 12:05:05.795949: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:05:06.190048: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 122s - loss: 0.1551 - accuracy: 0.9438 - val_loss: 0.1569 - val_accuracy: 0.9421 - lr: 0.0100 - 122s/epoch - 2s/step
+Epoch 23/100
+2022-08-04 12:05:22.202253: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5323 of 25000
+2022-08-04 12:05:22.256016: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4966 of 25000
+2022-08-04 12:05:32.206328: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11717 of 25000
+2022-08-04 12:05:32.266827: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12591 of 25000
+2022-08-04 12:05:42.202458: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16745 of 25000
+2022-08-04 12:05:42.521319: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15643 of 25000
+2022-08-04 12:05:47.370418: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:05:49.998851: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 125s - loss: 0.1338 - accuracy: 0.9525 - val_loss: 0.2047 - val_accuracy: 0.9217 - lr: 0.0100 - 125s/epoch - 2s/step
+Epoch 24/100
+2022-08-04 12:07:26.744885: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6041 of 25000
+2022-08-04 12:07:26.747824: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6160 of 25000
+2022-08-04 12:07:36.742841: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11764 of 25000
+2022-08-04 12:07:36.745266: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11264 of 25000
+2022-08-04 12:07:46.738955: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18909 of 25000
+2022-08-04 12:07:46.753752: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18780 of 25000
+2022-08-04 12:07:48.204260: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:07:48.459780: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 116s - loss: 0.1258 - accuracy: 0.9551 - val_loss: 0.1281 - val_accuracy: 0.9546 - lr: 0.0100 - 116s/epoch - 1s/step
+Epoch 25/100
+2022-08-04 12:09:22.606011: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4555 of 25000
+2022-08-04 12:09:22.660203: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5015 of 25000
+2022-08-04 12:09:32.604912: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10964 of 25000
+2022-08-04 12:09:32.625384: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11307 of 25000
+2022-08-04 12:09:42.590880: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16890 of 25000
+2022-08-04 12:09:42.590969: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16702 of 25000
+2022-08-04 12:09:49.252813: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:09:49.568826: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 123s - loss: 0.1316 - accuracy: 0.9531 - val_loss: 0.1401 - val_accuracy: 0.9511 - lr: 0.0100 - 123s/epoch - 2s/step
+Epoch 26/100
+2022-08-04 12:11:25.277223: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7108 of 25000
+2022-08-04 12:11:25.287378: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7259 of 25000
+2022-08-04 12:11:35.290114: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11820 of 25000
+2022-08-04 12:11:35.303238: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11807 of 25000
+2022-08-04 12:11:45.328487: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17735 of 25000
+2022-08-04 12:11:45.377196: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17539 of 25000
+2022-08-04 12:11:48.595635: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:11:48.824758: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 118s - loss: 0.1057 - accuracy: 0.9640 - val_loss: 0.1479 - val_accuracy: 0.9495 - lr: 0.0100 - 118s/epoch - 2s/step
+Epoch 27/100
+2022-08-04 12:13:23.422831: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4936 of 25000
+2022-08-04 12:13:23.427508: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4978 of 25000
+2022-08-04 12:13:33.444683: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10517 of 25000
+2022-08-04 12:13:33.486092: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10936 of 25000
+2022-08-04 12:13:43.422793: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17702 of 25000
+2022-08-04 12:13:43.423353: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18198 of 25000
+2022-08-04 12:13:45.907798: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:13:47.400384: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:15:08.357407: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3645 of 25000
+2022-08-04 12:15:08.393131: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3333 of 25000
+2022-08-04 12:15:11.881259: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:15:12.012413: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 125s - loss: 0.1008 - accuracy: 0.9654 - val_loss: 0.1263 - val_accuracy: 0.9559 - lr: 0.0100 - 125s/epoch - 2s/step
+Epoch 28/100
+2022-08-04 12:15:28.057427: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4038 of 25000
+2022-08-04 12:15:28.117282: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3451 of 25000
+2022-08-04 12:15:38.057391: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11477 of 25000
+2022-08-04 12:15:38.060435: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12446 of 25000
+2022-08-04 12:15:48.046834: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16110 of 25000
+2022-08-04 12:15:48.053093: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16910 of 25000
+2022-08-04 12:15:53.355844: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:15:55.389511: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 123s - loss: 0.0972 - accuracy: 0.9671 - val_loss: 0.1455 - val_accuracy: 0.9507 - lr: 0.0100 - 123s/epoch - 2s/step
+Epoch 29/100
+2022-08-04 12:17:30.641543: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5967 of 25000
+2022-08-04 12:17:30.720178: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5631 of 25000
+2022-08-04 12:17:40.648319: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9351 of 25000
+2022-08-04 12:17:40.826988: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8828 of 25000
+2022-08-04 12:17:50.624279: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12683 of 25000
+2022-08-04 12:17:50.698987: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12693 of 25000
+2022-08-04 12:18:00.633312: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17486 of 25000
+2022-08-04 12:18:00.681420: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18300 of 25000
+2022-08-04 12:18:03.036360: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:18:04.547378: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:19:25.190136: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4777 of 25000
+2022-08-04 12:19:25.242945: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4138 of 25000
+2022-08-04 12:19:25.617462: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:19:26.745313: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 132s - loss: 0.0917 - accuracy: 0.9689 - val_loss: 0.1282 - val_accuracy: 0.9556 - lr: 0.0100 - 132s/epoch - 2s/step
+Epoch 30/100
+2022-08-04 12:19:42.805061: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4721 of 25000
+2022-08-04 12:19:42.819817: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4889 of 25000
+2022-08-04 12:19:52.800283: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11255 of 25000
+2022-08-04 12:19:52.835924: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11674 of 25000
+2022-08-04 12:20:02.800154: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16931 of 25000
+2022-08-04 12:20:02.852971: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17790 of 25000
+2022-08-04 12:20:09.636441: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:20:09.683199: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:21:30.424968: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4805 of 25000
+2022-08-04 12:21:30.469947: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4885 of 25000
+2022-08-04 12:21:30.679644: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:21:30.884540: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 124s - loss: 0.0996 - accuracy: 0.9668 - val_loss: 0.1026 - val_accuracy: 0.9668 - lr: 0.0100 - 124s/epoch - 2s/step
+Epoch 31/100
+2022-08-04 12:21:46.942156: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6783 of 25000
+2022-08-04 12:21:46.957428: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6572 of 25000
+2022-08-04 12:21:56.935615: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11292 of 25000
+2022-08-04 12:21:56.950137: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11020 of 25000
+2022-08-04 12:22:06.928976: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16331 of 25000
+2022-08-04 12:22:06.956258: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15938 of 25000
+2022-08-04 12:22:13.032623: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:22:13.655426: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 122s - loss: 0.0877 - accuracy: 0.9713 - val_loss: 0.1044 - val_accuracy: 0.9644 - lr: 0.0100 - 122s/epoch - 2s/step
+Epoch 32/100
+2022-08-04 12:23:48.823274: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3953 of 25000
+2022-08-04 12:23:48.842605: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3581 of 25000
+2022-08-04 12:23:58.833819: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9676 of 25000
+2022-08-04 12:23:58.844548: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8785 of 25000
+2022-08-04 12:24:08.827620: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15700 of 25000
+2022-08-04 12:24:08.930195: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15781 of 25000
+2022-08-04 12:24:15.363912: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:24:16.184732: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:25:37.030767: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4842 of 25000
+2022-08-04 12:25:37.082218: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4828 of 25000
+2022-08-04 12:25:37.363044: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:25:37.587587: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 125s - loss: 0.0791 - accuracy: 0.9745 - val_loss: 0.0931 - val_accuracy: 0.9692 - lr: 0.0100 - 125s/epoch - 2s/step
+Epoch 33/100
+2022-08-04 12:25:53.679940: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6203 of 25000
+2022-08-04 12:25:53.683466: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6253 of 25000
+2022-08-04 12:26:03.682849: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13332 of 25000
+2022-08-04 12:26:03.693438: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12966 of 25000
+2022-08-04 12:26:13.681210: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18645 of 25000
+2022-08-04 12:26:13.691023: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18862 of 25000
+2022-08-04 12:26:14.987766: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:26:15.066774: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 115s - loss: 0.0789 - accuracy: 0.9743 - val_loss: 0.0960 - val_accuracy: 0.9691 - lr: 0.0100 - 115s/epoch - 1s/step
+Epoch 34/100
+2022-08-04 12:27:48.981924: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6366 of 25000
+2022-08-04 12:27:49.001677: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6580 of 25000
+2022-08-04 12:27:58.974599: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18209 of 25000
+2022-08-04 12:27:58.990076: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19212 of 25000
+2022-08-04 12:27:59.613571: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:28:00.741985: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 107s - loss: 0.0658 - accuracy: 0.9794 - val_loss: 0.1003 - val_accuracy: 0.9646 - lr: 0.0100 - 107s/epoch - 1s/step
+Epoch 35/100
+2022-08-04 12:29:36.425064: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8974 of 25000
+2022-08-04 12:29:36.566680: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8509 of 25000
+2022-08-04 12:29:46.404500: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14082 of 25000
+2022-08-04 12:29:46.422333: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15227 of 25000
+2022-08-04 12:29:51.990461: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:29:53.215949: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 110s - loss: 0.0752 - accuracy: 0.9751 - val_loss: 0.0907 - val_accuracy: 0.9680 - lr: 0.0100 - 110s/epoch - 1s/step
+Epoch 36/100
+2022-08-04 12:31:26.446507: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10051 of 25000
+2022-08-04 12:31:26.456155: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10412 of 25000
+2022-08-04 12:31:36.506231: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15886 of 25000
+2022-08-04 12:31:36.692181: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15216 of 25000
+2022-08-04 12:31:45.167956: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:31:46.554148: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19656 of 25000
+2022-08-04 12:31:47.241216: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:33:07.957251: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4983 of 25000
+2022-08-04 12:33:07.960429: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:33:07.991694: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4625 of 25000
+2022-08-04 12:33:08.708960: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 118s - loss: 0.0552 - accuracy: 0.9837 - val_loss: 0.0851 - val_accuracy: 0.9702 - lr: 0.0100 - 118s/epoch - 2s/step
+Epoch 37/100
+2022-08-04 12:33:24.798839: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6168 of 25000
+2022-08-04 12:33:25.523275: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5305 of 25000
+2022-08-04 12:33:34.784229: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9982 of 25000
+2022-08-04 12:33:34.801114: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11520 of 25000
+2022-08-04 12:33:44.648302: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:33:44.786445: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18498 of 25000
+2022-08-04 12:33:46.933828: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 118s - loss: 0.0531 - accuracy: 0.9845 - val_loss: 0.0941 - val_accuracy: 0.9692 - lr: 0.0100 - 118s/epoch - 2s/step
+Epoch 38/100
+2022-08-04 12:35:23.140297: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6521 of 25000
+2022-08-04 12:35:23.404844: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6690 of 25000
+2022-08-04 12:35:33.138361: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12764 of 25000
+2022-08-04 12:35:33.182063: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12852 of 25000
+2022-08-04 12:35:43.164212: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18223 of 25000
+2022-08-04 12:35:43.168876: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18513 of 25000
+2022-08-04 12:35:45.884406: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:35:45.934666: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 119s - loss: 0.0693 - accuracy: 0.9774 - val_loss: 0.1301 - val_accuracy: 0.9499 - lr: 0.0100 - 119s/epoch - 2s/step
+Epoch 39/100
+2022-08-04 12:37:22.370514: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5521 of 25000
+2022-08-04 12:37:22.382399: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5756 of 25000
+2022-08-04 12:37:32.360641: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11054 of 25000
+2022-08-04 12:37:32.374186: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10970 of 25000
+2022-08-04 12:37:42.254455: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:37:42.376248: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19424 of 25000
+2022-08-04 12:37:42.776449: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 117s - loss: 0.0570 - accuracy: 0.9825 - val_loss: 0.1009 - val_accuracy: 0.9664 - lr: 0.0100 - 117s/epoch - 1s/step
+Epoch 40/100
+2022-08-04 12:39:19.267758: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5348 of 25000
+2022-08-04 12:39:19.285482: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5583 of 25000
+2022-08-04 12:39:29.299634: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14190 of 25000
+2022-08-04 12:39:29.474306: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13761 of 25000
+2022-08-04 12:39:39.269093: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18389 of 25000
+2022-08-04 12:39:39.292276: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19188 of 25000
+2022-08-04 12:39:40.460445: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:39:41.605116: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:41:02.308367: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4962 of 25000
+2022-08-04 12:41:02.344388: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 119s - loss: 0.0536 - accuracy: 0.9829 - val_loss: 0.1561 - val_accuracy: 0.9401 - lr: 0.0100 - 119s/epoch - 2s/step
+Epoch 41/100
+2022-08-04 12:41:18.397054: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4957 of 25000
+2022-08-04 12:41:18.416559: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5268 of 25000
+2022-08-04 12:41:28.396596: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 8858 of 25000
+2022-08-04 12:41:28.410181: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9787 of 25000
+2022-08-04 12:41:38.405291: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15388 of 25000
+2022-08-04 12:41:38.405519: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 16227 of 25000
+2022-08-04 12:41:42.639940: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:41:43.782975: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 121s - loss: 0.0637 - accuracy: 0.9796 - val_loss: 0.0812 - val_accuracy: 0.9753 - lr: 0.0100 - 121s/epoch - 2s/step
+Epoch 42/100
+2022-08-04 12:43:19.020918: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6116 of 25000
+2022-08-04 12:43:19.032332: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6332 of 25000
+2022-08-04 12:43:29.019676: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12440 of 25000
+2022-08-04 12:43:29.021477: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13014 of 25000
+2022-08-04 12:43:39.027046: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19004 of 25000
+2022-08-04 12:43:39.036211: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19238 of 25000
+2022-08-04 12:43:40.270639: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:43:40.546692: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 118s - loss: 0.1725 - accuracy: 0.9331 - val_loss: 0.1706 - val_accuracy: 0.9355 - lr: 0.0100 - 118s/epoch - 2s/step
+Epoch 43/100
+2022-08-04 12:45:17.083692: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7445 of 25000
+2022-08-04 12:45:17.086224: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7781 of 25000
+2022-08-04 12:45:27.094157: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12801 of 25000
+2022-08-04 12:45:27.226781: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12738 of 25000
+2022-08-04 12:45:35.595929: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:45:35.632060: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 113s - loss: 0.1150 - accuracy: 0.9574 - val_loss: 0.1302 - val_accuracy: 0.9559 - lr: 0.0100 - 113s/epoch - 1s/step
+Epoch 44/100
+2022-08-04 12:47:10.064571: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4259 of 25000
+2022-08-04 12:47:10.070608: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3982 of 25000
+2022-08-04 12:47:20.069332: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 10585 of 25000
+2022-08-04 12:47:20.071431: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11297 of 25000
+2022-08-04 12:47:30.062116: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19192 of 25000
+2022-08-04 12:47:30.070201: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18143 of 25000
+2022-08-04 12:47:31.612795: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:47:33.339854: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:48:53.900962: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4290 of 25000
+2022-08-04 12:48:53.904760: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 3693 of 25000
+2022-08-04 12:48:55.153540: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:48:56.198890: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 122s - loss: 0.0965 - accuracy: 0.9646 - val_loss: 0.1214 - val_accuracy: 0.9569 - lr: 0.0100 - 122s/epoch - 2s/step
+Epoch 45/100
+2022-08-04 12:49:12.195076: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6720 of 25000
+2022-08-04 12:49:12.204908: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6036 of 25000
+2022-08-04 12:49:22.188311: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12347 of 25000
+2022-08-04 12:49:22.347886: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11252 of 25000
+2022-08-04 12:49:32.205418: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17220 of 25000
+2022-08-04 12:49:32.260599: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 15332 of 25000
+2022-08-04 12:49:37.670044: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:49:40.484600: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 122s - loss: 0.0808 - accuracy: 0.9721 - val_loss: 0.1063 - val_accuracy: 0.9642 - lr: 0.0100 - 122s/epoch - 2s/step
+Epoch 46/100
+2022-08-04 12:51:14.291914: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5631 of 25000
+2022-08-04 12:51:14.339049: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5309 of 25000
+2022-08-04 12:51:24.290702: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 12980 of 25000
+2022-08-04 12:51:24.330643: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13021 of 25000
+2022-08-04 12:51:34.298842: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19625 of 25000
+2022-08-04 12:51:34.350188: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19940 of 25000
+2022-08-04 12:51:34.522060: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:51:34.922670: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 117s - loss: 0.0726 - accuracy: 0.9764 - val_loss: 0.1027 - val_accuracy: 0.9662 - lr: 1.0000e-03 - 117s/epoch - 1s/step
+Epoch 47/100
+2022-08-04 12:53:10.847973: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7898 of 25000
+2022-08-04 12:53:10.877237: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7942 of 25000
+2022-08-04 12:53:20.864042: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14332 of 25000
+2022-08-04 12:53:20.867192: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14755 of 25000
+2022-08-04 12:53:28.406421: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:53:28.756334: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 113s - loss: 0.0651 - accuracy: 0.9799 - val_loss: 0.1004 - val_accuracy: 0.9666 - lr: 1.0000e-03 - 113s/epoch - 1s/step
+Epoch 48/100
+2022-08-04 12:55:03.422568: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6838 of 25000
+2022-08-04 12:55:03.583077: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7172 of 25000
+2022-08-04 12:55:13.403454: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13799 of 25000
+2022-08-04 12:55:13.405760: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13370 of 25000
+2022-08-04 12:55:19.823697: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:55:20.546969: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:56:40.960773: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4487 of 25000
+2022-08-04 12:56:40.991884: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 4470 of 25000
+2022-08-04 12:56:42.002519: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:56:42.040629: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 115s - loss: 0.0533 - accuracy: 0.9841 - val_loss: 0.1007 - val_accuracy: 0.9679 - lr: 1.0000e-03 - 115s/epoch - 1s/step
+Epoch 49/100
+2022-08-04 12:56:58.090903: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6268 of 25000
+2022-08-04 12:56:58.126821: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5933 of 25000
+2022-08-04 12:57:08.091678: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14162 of 25000
+2022-08-04 12:57:08.134489: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14054 of 25000
+2022-08-04 12:57:17.430571: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:57:17.704878: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 113s - loss: 0.0483 - accuracy: 0.9863 - val_loss: 0.0985 - val_accuracy: 0.9700 - lr: 1.0000e-03 - 113s/epoch - 1s/step
+Epoch 50/100
+2022-08-04 12:58:51.420464: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 6278 of 25000
+2022-08-04 12:58:51.542784: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 7053 of 25000
+2022-08-04 12:59:01.418391: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11028 of 25000
+2022-08-04 12:59:01.423084: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 11628 of 25000
+2022-08-04 12:59:11.415015: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17467 of 25000
+2022-08-04 12:59:11.416937: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 17800 of 25000
+2022-08-04 12:59:14.122545: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 12:59:14.131802: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 118s - loss: 0.0457 - accuracy: 0.9874 - val_loss: 0.0948 - val_accuracy: 0.9707 - lr: 1.0000e-03 - 118s/epoch - 2s/step
+Epoch 51/100
+2022-08-04 13:00:49.430318: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5533 of 25000
+2022-08-04 13:00:49.442322: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5387 of 25000
+2022-08-04 13:00:59.425548: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13601 of 25000
+2022-08-04 13:00:59.462453: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 13389 of 25000
+2022-08-04 13:01:09.425120: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 18946 of 25000
+2022-08-04 13:01:09.438109: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 19418 of 25000
+2022-08-04 13:01:10.346354: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 13:01:10.881170: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+78/78 - 116s - loss: 0.0445 - accuracy: 0.9879 - val_loss: 0.0951 - val_accuracy: 0.9716 - lr: 1.0000e-04 - 116s/epoch - 1s/step
+/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/_keras/callbacks.py:58: UserWarning: Some callbacks may not have access to the averaged metrics, see https://github.com/horovod/horovod/issues/2440
+  warnings.warn(
+Saving model to  cat-or-dog-VGG16_model_hvd-reuse.h5
+All done for rank  0
+2022-08-04 13:02:45.039466: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 5974 of 25000
+2022-08-04 13:02:54.985984: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 9772 of 25000
+2022-08-04 13:03:05.031556: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:390] Filling up shuffle buffer (this may take a while): 14853 of 25000
+2022-08-04 13:03:12.480711: I tensorflow/core/kernels/data/shuffle_dataset_op.cc:415] Shuffle buffer filled.
+2022-08-04 13:03:12.524558: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.524635: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.524776: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.524811: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.524901: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.524937: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.525288: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.525322: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.525593: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.525625: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.525859: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.525891: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.526167: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.526199: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.526418: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.526450: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.526663: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.526694: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.526961: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.526993: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.527222: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.527255: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.527555: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.527598: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.528003: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.528035: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.528090: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.528118: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.528476: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.528509: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.528533: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+2022-08-04 13:03:12.528552: W tensorflow/core/framework/op_kernel.cc:1745] OP_REQUIRES failed at mpi_ops.cc:463 : UNKNOWN: Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+Found 25000 images.
+Tensor("args_0:0", shape=(), dtype=string)
+Tensor("args_0:0", shape=(), dtype=string)
+Using "VGG11_model" pre-trained model with 23 layers
+/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/_keras/callbacks.py:58: UserWarning: Some callbacks may not have access to the averaged metrics, see https://github.com/horovod/horovod/issues/2440
+  warnings.warn(
+Traceback (most recent call last):
+  File "vgg16-hvd.py", line 193, in <module>
+    history = model.fit(train_dataset, epochs=epochs,
+  File "/opt/rh/rh-python38/root/usr/local/lib/python3.8/site-packages/keras/utils/traceback_utils.py", line 67, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/tensorflow/python/eager/execute.py", line 54, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+tensorflow.python.framework.errors_impl.UnknownError: Graph execution error:
+
+Detected at node 'DistributedSGD_Allreduce/cond_30/HorovodAllreduce_grads_30_0' defined at (most recent call last):
+    File "vgg16-hvd.py", line 193, in <module>
+      history = model.fit(train_dataset, epochs=epochs,
+    File "/opt/rh/rh-python38/root/usr/local/lib/python3.8/site-packages/keras/utils/traceback_utils.py", line 64, in error_handler
+      return fn(*args, **kwargs)
+    File "/opt/rh/rh-python38/root/usr/local/lib/python3.8/site-packages/keras/engine/training.py", line 1384, in fit
+      tmp_logs = self.train_function(iterator)
+    File "/opt/rh/rh-python38/root/usr/local/lib/python3.8/site-packages/keras/engine/training.py", line 1021, in train_function
+      return step_function(self, iterator)
+    File "/opt/rh/rh-python38/root/usr/local/lib/python3.8/site-packages/keras/engine/training.py", line 1010, in step_function
+      outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/opt/rh/rh-python38/root/usr/local/lib/python3.8/site-packages/keras/engine/training.py", line 1000, in run_step
+      outputs = model.train_step(data)
+    File "/opt/rh/rh-python38/root/usr/local/lib/python3.8/site-packages/keras/engine/training.py", line 863, in train_step
+      self.optimizer.minimize(loss, self.trainable_variables, tape=tape)
+    File "/opt/rh/rh-python38/root/usr/local/lib/python3.8/site-packages/keras/optimizer_v2/optimizer_v2.py", line 530, in minimize
+      grads_and_vars = self._compute_gradients(
+    File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/_keras/__init__.py", line 94, in _compute_gradients
+      allreduced_grads = self._allreduce(grads, weights)
+    File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/_keras/__init__.py", line 124, in _allreduce
+      return self._allreduce_grads(grads, vars)
+    File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/tensorflow/__init__.py", line 376, in allreduce_grads
+      if groups is not None:
+    File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/tensorflow/__init__.py", line 417, in allreduce_grads
+      op=op,
+    File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/tensorflow/__init__.py", line 417, in allreduce_grads
+      op=op,
+    File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/tensorflow/__init__.py", line 417, in allreduce_grads
+      op=op,
+    File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/tensorflow/__init__.py", line 257, in _allreduce_cond
+      tf.convert_to_tensor(process_set.included() and process_set.size() > 1)),
+    File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/tensorflow/__init__.py", line 248, in allreduce_fn
+      return allreduce(tensor, *args, process_set=process_set, **kwargs)
+    File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/tensorflow/__init__.py", line 95, in allreduce
+      if isinstance(tensor, tf.IndexedSlices):
+    File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/tensorflow/__init__.py", line 125, in allreduce
+      summed_tensor_compressed = _allreduce(tensor_compressed, op=op,
+    File "/opt/rh/rh-python38/root/usr/local/lib64/python3.8/site-packages/horovod/tensorflow/mpi_ops.py", line 123, in _allreduce
+      return MPI_LIB.horovod_allreduce(tensor, name=name, reduce_op=op,
+    File "<string>", line 107, in horovod_allreduce
+Node: 'DistributedSGD_Allreduce/cond_30/HorovodAllreduce_grads_30_0'
+Horovod has been shut down. This was caused by an exception on one of the ranks or an attempt to allreduce, allgather or broadcast a tensor after one of the ranks finished execution. If the shutdown was caused by an exception, you should see the exception in the log before the first shutdown message.
+	 [[{{node DistributedSGD_Allreduce/cond_30/HorovodAllreduce_grads_30_0}}]] [Op:__inference_train_function_3970]
+srun: error: r02g03: task 1: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=12658674.0
