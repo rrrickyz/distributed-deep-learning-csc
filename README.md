@@ -13,3 +13,5 @@ only changed to **loss: 6.9079** in the following epoch, and the validation accu
 
 The python script of the model: 
 
+(I still have others unpushed to the github because of the conflicting repositories. Please wait until later!)
+
